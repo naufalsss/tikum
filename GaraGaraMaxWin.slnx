@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="GaraGaraMaxWin.Core/GaraGaraMaxWin.Core.csproj" />
+  <Project Path="GaraGaraMaxWin.Demo/GaraGaraMaxWin.Demo.csproj" />
+</Solution>

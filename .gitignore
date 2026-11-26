@@ -1,0 +1,22 @@
+# Visual Studio
+.vs/
+*.user
+*.suo
+
+# Build output
+bin/
+obj/
+[Dd]ebug/
+[Rr]elease/
+
+# Database lokal (Bab 9)
+*.db
+*.db-shm
+*.db-wal
+
+# Save data game (Bab 6)
+*.sav
+
+# OS
+.DS_Store
+Thumbs.db
