@@ -8,8 +8,29 @@ namespace GaraGaraMaxWin.Core.Services;
 /// </summary>
 public class RiwayatAktivitasService
 {
+    // Bab 5: List<T> menyimpan banyak objek bertipe sama dan jumlahnya dinamis.
     private readonly List<AktivitasHarian> _riwayat = new();
 
-    // TODO Zian (Bab 5): tambah method Tambah, Cari berdasarkan nama (pakai .Find()), HitungJumlah, dan sebagainya.
+    // Hanya bisa dibaca dari luar, perubahan harus lewat method service ini.
     public IReadOnlyList<AktivitasHarian> Semua => _riwayat;
+
+    public int Jumlah => _riwayat.Count;
+
+    public void Tambah(AktivitasHarian aktivitas)
+    {
+        ArgumentNullException.ThrowIfNull(aktivitas);
+        _riwayat.Add(aktivitas);
+    }
+
+    // Bab 5: .Find() dengan lambda expression. Hasilnya null kalau tidak ada yang cocok.
+    public AktivitasHarian? CariBerdasarkanNama(string nama)
+    {
+        return _riwayat.Find(a => a.Nama == nama);
+    }
+
+    // Menghitung berapa kali sebuah aktivitas dipilih pemain.
+    public int HitungBerdasarkanNama(string nama)
+    {
+        return _riwayat.FindAll(a => a.Nama == nama).Count;
+    }
 }
