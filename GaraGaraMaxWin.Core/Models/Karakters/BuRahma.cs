@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace GaraGaraMaxWin.Core.Models.Karakters;
 
 /// <summary>
@@ -7,18 +9,26 @@ namespace GaraGaraMaxWin.Core.Models.Karakters;
 /// </summary>
 public class BuRahma : Karakter
 {
-    // TODO Naufal (Bab 3): tambah field khusus Bu Rahma (misal GajiBulanan, NegaraKerja).
+    // Field khusus Bu Rahma.
+    public int GajiBulanan { get; set; }
+    public string NegaraKerja { get; set; }
+
     public string KodeAsetGlb => "BuRahma.glb";
 
+    // Bab 3: base(...) mengisi kode dan nama lewat constructor induk.
     public BuRahma() : base("RHM", "Bu Rahma")
     {
+        Peran = "Istri (TKW)";
+        Umur = 40;
+        GajiBulanan = 6_000_000;
+        NegaraKerja = "Hong Kong";
     }
 
-    // TODO Naufal (Bab 3): isi dialog khas Bu Rahma.
-    public override string Bicara() => "TODO";
+    public override string Bicara() => "Mas, uang kiriman ini untuk sekolah Fajar, jangan dipakai judi ya.";
 
     public override void TampilkanInfo()
     {
         base.TampilkanInfo();
+        Console.WriteLine($"  Bekerja di {NegaraKerja}, gaji Rp {GajiBulanan.ToString("N0", new CultureInfo("id-ID"))} per bulan");
     }
 }
