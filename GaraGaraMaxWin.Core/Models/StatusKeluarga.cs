@@ -6,10 +6,28 @@ namespace GaraGaraMaxWin.Core.Models;
 /// </summary>
 public class StatusKeluarga
 {
-    // TODO Aris (Bab 2): beri validasi supaya nilai tetap 0-100 (manual get/set dengan field private).
-    public int TingkatStres { get; set; }
-    public int KepercayaanIstri { get; set; } = 50;
+    private int _tingkatStres;
+    private int _kepercayaanIstri = 50;
 
-    // TODO Aris (Bab 2): ubah jadi read-only expression-bodied property, mirip Status => ... di modul.
-    public string Ringkasan => "TODO";
+    // Bab 2: manual get/set. Nilai dijaga tetap 0 sampai 100 (di luar batas dipotong ke batas terdekat).
+    public int TingkatStres
+    {
+        get => _tingkatStres;
+        set => _tingkatStres = Math.Clamp(value, 0, 100);
+    }
+
+    public int KepercayaanIstri
+    {
+        get => _kepercayaanIstri;
+        set => _kepercayaanIstri = Math.Clamp(value, 0, 100);
+    }
+
+    // Bab 2: auto-property untuk data bebas tanpa validasi.
+    public string CatatanHari { get; set; } = "";
+
+    // Bab 2: read-only expression-bodied property. Dihitung dari nilai lain, tidak punya setter.
+    public string Ringkasan =>
+        KepercayaanIstri < 30 ? "Keluarga rapuh"
+        : TingkatStres > 70 ? "Penuh tekanan"
+        : "Stabil";
 }
