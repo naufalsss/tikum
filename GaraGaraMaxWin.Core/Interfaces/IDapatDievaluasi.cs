@@ -6,6 +6,6 @@ namespace GaraGaraMaxWin.Core.Interfaces;
 /// </summary>
 public interface IDapatDievaluasi
 {
-    // TODO Ridho (Bab 4): sesuaikan anggota interface ini dengan kebutuhan game.
+    // Penilaian singkat tentang dampak objek ini bagi keluarga.
     string Evaluasi();
 }

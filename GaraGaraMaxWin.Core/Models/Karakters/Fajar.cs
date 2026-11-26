@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace GaraGaraMaxWin.Core.Models.Karakters;
 
 /// <summary>
@@ -6,18 +8,26 @@ namespace GaraGaraMaxWin.Core.Models.Karakters;
 /// </summary>
 public class Fajar : Karakter
 {
-    // TODO Naufal (Bab 3): tambah field khusus Fajar (misal NamaPesantren, BiayaBulanan).
+    // Field khusus Fajar.
+    public string NamaPesantren { get; set; }
+    public int BiayaBulanan { get; set; }
+
     public string KodeAsetGlb => "Fajar.glb";
 
+    // Bab 3: base(...) mengisi kode dan nama lewat constructor induk.
     public Fajar() : base("FJR", "Fajar")
     {
+        Peran = "Anak (santri)";
+        Umur = 15;
+        NamaPesantren = "Pesantren Al-Hidayah";
+        BiayaBulanan = 1_500_000;
     }
 
-    // TODO Naufal (Bab 3): isi dialog khas Fajar.
-    public override string Bicara() => "TODO";
+    public override string Bicara() => "Yah, Fajar cuma ingin keluarga kita utuh lagi.";
 
     public override void TampilkanInfo()
     {
         base.TampilkanInfo();
+        Console.WriteLine($"  Santri di {NamaPesantren}, biaya Rp {BiayaBulanan.ToString("N0", new CultureInfo("id-ID"))} per bulan");
     }
 }
